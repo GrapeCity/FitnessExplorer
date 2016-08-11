@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/FrameLayout_RawData"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:id="@+id/LinearLayout_RawData"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  android:gravity="center_horizontal">
+                    <com.grapecity.xuni.flexgrid.FlexGrid
+                        android:id="@+id/flexgrid"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+                    </com.grapecity.xuni.flexgrid.FlexGrid>
+    </LinearLayout>
+</FrameLayout>

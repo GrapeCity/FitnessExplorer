@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/FitnessExplorer.iml" filepath="$PROJECT_DIR$/FitnessExplorer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javalib/javalib.iml" filepath="$PROJECT_DIR$/javalib/javalib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xuni.calendar-4.0.20161.118/xuni.calendar-4.0.20161.118.iml" filepath="$PROJECT_DIR$/xuni.calendar-4.0.20161.118/xuni.calendar-4.0.20161.118.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xuni.chartcore-4.0.20161.118/xuni.chartcore-4.0.20161.118.iml" filepath="$PROJECT_DIR$/xuni.chartcore-4.0.20161.118/xuni.chartcore-4.0.20161.118.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xuni.core-4.0.20161.118/xuni.core-4.0.20161.118.iml" filepath="$PROJECT_DIR$/xuni.core-4.0.20161.118/xuni.core-4.0.20161.118.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xuni.flexchart-4.0.20161.118/xuni.flexchart-4.0.20161.118.iml" filepath="$PROJECT_DIR$/xuni.flexchart-4.0.20161.118/xuni.flexchart-4.0.20161.118.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xuni.flexgrid-4.0.20161.118/xuni.flexgrid-4.0.20161.118.iml" filepath="$PROJECT_DIR$/xuni.flexgrid-4.0.20161.118/xuni.flexgrid-4.0.20161.118.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xuni.flexpie-4.0.20161.118/xuni.flexpie-4.0.20161.118.iml" filepath="$PROJECT_DIR$/xuni.flexpie-4.0.20161.118/xuni.flexpie-4.0.20161.118.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xuni.gauge-4.0.20161.118/xuni.gauge-4.0.20161.118.iml" filepath="$PROJECT_DIR$/xuni.gauge-4.0.20161.118/xuni.gauge-4.0.20161.118.iml" />
+    </modules>
+  </component>
+</project>

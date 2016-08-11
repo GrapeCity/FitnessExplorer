@@ -1,0 +1,1 @@
+include ':app', ':javalib', ':xuni.gauge-4.0.20161.118', ':xuni.core-4.0.20161.118', ':xuni.chartcore-4.0.20161.118', ':xuni.flexchart-4.0.20161.118', ':xuni.calendar-4.0.20161.118', ':xuni.flexgrid-4.0.20161.118', ':xuni.flexpie-4.0.20161.118'

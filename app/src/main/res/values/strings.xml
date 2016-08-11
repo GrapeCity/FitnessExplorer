@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Fitness Explorer</string>
+    <string name="no_fit"><b>Google Fit</b> lets you control your fitness data from multiple apps and devices.</string>
+    <string name="no_fit_app">By connecting Google Fit and Fitness Explorer, you will be able to view the information in an easy to read way.</string>
+    <string name="no_fit_title">No Google Fit data found</string>
+    <string name="no_fit_data">No Google Fit data found. Please start using Google Fit.</string>
+    <string name="loading">Loading...</string>
+</resources>

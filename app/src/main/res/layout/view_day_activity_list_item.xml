@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent">
+    <View
+        android:id="@+id/colorview"
+        android:layout_width="30dp"
+        android:layout_height="30dp" ></View>
+    <View
+        android:id="@+id/paddingview"
+        android:layout_width="10dp"
+        android:layout_height="30dp" ></View>
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
