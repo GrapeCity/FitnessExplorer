@@ -74,7 +74,6 @@
                         app:srcCompat="@drawable/ic_grid_on_black_100dp"
                         android:scaleType="fitCenter"
                         android:layout_marginBottom="25dp"
-                        android:background="@color/colorPrimary"
                         style="?android:attr/buttonStyleSmall"/>
 
                 </LinearLayout>

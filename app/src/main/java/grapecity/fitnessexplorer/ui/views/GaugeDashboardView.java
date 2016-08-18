@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 import com.fitnessexplorer.entities.Calorie;
 import com.grapecity.xuni.gauge.GaugeRange;
 import com.grapecity.xuni.gauge.XuniRadialGauge;
+
+import grapecity.fitnessexplorer.R;
 import grapecity.fitnessexplorer.ui.base.FitNotConnectedFragment;
 
 /**
@@ -19,22 +21,22 @@ public class GaugeDashboardView extends DashboardView
     public GaugeDashboardView(Context context, Calorie calories)
     {
         super(context);
-        init(context, calories);
+        init(context);
     }
 
     public GaugeDashboardView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context, new Calorie());
+        init(context);
     }
 
     public GaugeDashboardView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, new Calorie());
+        init(context);
     }
 
-    private void init(Context context, Calorie calories)
+    private void init(Context context)
     {
-        super.title.setText("Calories burned today");
+        super.title.setText(getResources().getString(R.string.calories_today));
         gauge = new XuniRadialGauge(context);
         fragment = new FitNotConnectedFragment();
 
@@ -48,11 +50,6 @@ public class GaugeDashboardView extends DashboardView
         gauge.setMaxFontColor(Color.GRAY);
         gauge.setValueFontColor(Color.BLACK);
         gauge.setValueFontSize(30);
-
-        if(gauge.getValue() != calories.getCalorie())
-        {
-            gauge.refresh();
-        }
 
         super.contentLayout.addView(gauge);
     }

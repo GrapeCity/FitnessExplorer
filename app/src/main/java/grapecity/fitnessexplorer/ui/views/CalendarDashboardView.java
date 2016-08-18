@@ -18,12 +18,16 @@ import com.grapecity.xuni.calendar.CalendarOrientation;
 import com.grapecity.xuni.calendar.CalendarSelectionChangingEventArgs;
 import com.grapecity.xuni.calendar.XuniCalendar;
 import com.grapecity.xuni.core.IEventHandler;
+
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import grapecity.fitnessexplorer.R;
 import grapecity.fitnessexplorer.factories.RandomColorFactory;
 import grapecity.fitnessexplorer.util.DimensionUtil;
 
@@ -37,7 +41,6 @@ public class CalendarDashboardView extends DashboardView
     private MyAdapter mAdapter;
     private ArrayList<DayActivities> monthActivities = new ArrayList<>();
     private Context context;
-    private RandomColorFactory colorFactory;
 
     public CalendarDashboardView(Context context)
     {
@@ -59,9 +62,6 @@ public class CalendarDashboardView extends DashboardView
     {
         this.context = context;
 
-        String monthList[] = {"January", "February", "March", "April", "May", "June", "July", "August",
-                "September", "October", "November", "December"};
-
         calendar = new XuniCalendar(context);
         super.contentLayout.addView(calendar);
         calendar.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, DimensionUtil.getDimensionSize(300)));
@@ -76,7 +76,8 @@ public class CalendarDashboardView extends DashboardView
         calendar.setShowHeader(false);
 
         Calendar now = Calendar.getInstance();
-        super.title.setText("Activities in " + monthList[now.get(Calendar.MONTH)]);
+        String month = new SimpleDateFormat("MMMM").format(now.getTime());
+        super.title.setText(String.format(getResources().getString(R.string.activities_month), month));
     }
 
     public void setCalendar(List<DayActivities> activitiesThisMonth)
@@ -128,7 +129,7 @@ public class CalendarDashboardView extends DashboardView
                         {
                             CalorieActivity currActivity = (CalorieActivity)currDay.getActivities().get(j);
                             View square = new View(context);
-                            square.setBackgroundColor(colorFactory.getNewColor(currActivity.getActivity()).getColor());
+                            square.setBackgroundColor(RandomColorFactory.getNewColor(currActivity.getActivity()).getColor());
                             square.setLayoutParams(new LayoutParams(DimensionUtil.getDimensionSize(boxDimension), DimensionUtil.getDimensionSize(boxDimension)));
                             square.invalidate();
                             View padding = new View(context);
@@ -185,12 +186,12 @@ public class CalendarDashboardView extends DashboardView
                     DayActivities currDay = monthActivities.get(i);
                     if(currDay.getStartDate().get(Calendar.DAY_OF_MONTH) == cal.get(Calendar.DAY_OF_MONTH))
                     {
-                        mAdapter.setDayActivities(currDay.getActivities(), colorFactory);
+                        mAdapter.setDayActivities(currDay.getActivities());
                         break;
                     }
                     else
                     {
-                        mAdapter.setDayActivities(null, null);
+                        mAdapter.setDayActivities(null);
                     }
                 }
             }

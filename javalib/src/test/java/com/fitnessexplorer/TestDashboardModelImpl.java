@@ -32,7 +32,7 @@ public class TestDashboardModelImpl
     {
         view = new MockDashboardView();
         controller = new MockDashboardController();
-//        repo = new MemoryFitnessRepository();
+        repo = new MockFitnessRepository();
         model = new DashboardModelImpl(repo, controller);
     }
 

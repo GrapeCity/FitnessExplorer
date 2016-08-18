@@ -18,8 +18,11 @@ public class FitNotConnectedFragment extends DialogFragment
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
+        String download = getResources().getString(R.string.download);
+        String cancel = getResources().getString(R.string.download);
+
         builder.setView(R.layout.fit_dialog)
-                .setPositiveButton("Download", new DialogInterface.OnClickListener() {
+                .setPositiveButton(download, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         try {
                             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.google.android.apps.fitness")));
@@ -28,7 +31,7 @@ public class FitNotConnectedFragment extends DialogFragment
                         }
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
                     }

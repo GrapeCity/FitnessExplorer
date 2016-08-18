@@ -38,7 +38,6 @@ public class DashboardFragment extends Fragment implements IDashboardView
     private FlexPieDashboardView pieView;
     private FlexChartDashboardView chartView;
     private CalendarDashboardView calendarView;
-    private IFitnessRepository repo;
     private FitNotConnectedFragment fragment;
     private View progressBar;
     private LinearLayout emptyViewLayout;
@@ -46,7 +45,7 @@ public class DashboardFragment extends Fragment implements IDashboardView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        this.repo = ((MyApp)getActivity().getApplication()).getRepository(getActivity());
+        IFitnessRepository repo = ((MyApp)getActivity().getApplication()).getRepository(getActivity());
         this.model = (DashboardModelImpl) ModelFactory.getNewControllerModel(repo, (IController)getActivity());
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_dashboard, container, false);
         ImageButton rawDataViewButton = (ImageButton)view.findViewById(R.id.rawdatabutton);

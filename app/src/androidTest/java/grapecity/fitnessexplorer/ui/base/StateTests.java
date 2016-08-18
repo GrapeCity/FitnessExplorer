@@ -13,6 +13,8 @@ import com.fitnessexplorer.services.repo.RepositoryState;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,13 +40,29 @@ public class StateTests
 {
 
     @Rule
-    public ActivityTestRule<DashboardActivity> mActivityTestRule = new ActivityTestRule<>(DashboardActivity.class, true);
+    public ActivityTestRule<DashboardActivity> mActivityTestRule = new ActivityTestRule<>(DashboardActivity.class, true, false);
+
+    DashboardRobot robot;
+
+    @Before
+    public void before()
+    {
+        robot = new DashboardRobot(mActivityTestRule);
+    }
+
+    @After
+    public void after()
+    {
+        robot.endTest();
+    }
+
 
     @Test
     public void loadingScreenTest()
     {
-        DashboardRobot loadingRobot = new DashboardRobot(mActivityTestRule);
-        loadingRobot.stateChange(RepositoryState.CONNECTING)
+        robot
+                .launchDashboardScreen()
+                .stateChange(RepositoryState.CONNECTING)
                 .dashboardView(false)
                 .emptyDataView(false)
                 .loadingView(true)
@@ -54,8 +72,10 @@ public class StateTests
     @Test
     public void emptyDataStateTest()
     {
-        DashboardRobot emptyDataRobot = new DashboardRobot(mActivityTestRule);
-        emptyDataRobot.stateChange(RepositoryState.CONNECTION_SUCCESS)
+        robot
+                .disableData()
+                .launchDashboardScreen()
+                .stateChange(RepositoryState.CONNECTION_SUCCESS)
                 .dashboardView(false)
                 .emptyDataView(true)
                 .loadingView(false)
@@ -65,8 +85,9 @@ public class StateTests
     @Test
     public void dashboardDataStateTest()
     {
-        DashboardRobot dashboardDataRobot = new DashboardRobot(mActivityTestRule);
-        dashboardDataRobot.stateChange(RepositoryState.CONNECTION_SUCCESS)
+        robot
+                .launchDashboardScreen()
+                .stateChange(RepositoryState.CONNECTION_SUCCESS)
                 .dashboardView(true)
                 .emptyDataView(false)
                 .loadingView(false)
@@ -76,19 +97,20 @@ public class StateTests
     @Test
     public void fitNotConnectedStateTest()
     {
-        DashboardRobot fitNotConnectedRobot = new DashboardRobot(mActivityTestRule);
-        fitNotConnectedRobot.stateChange(RepositoryState.CONNECTION_FAILED)
-                .fitConnectedView(true);
-
-        fitNotConnectedRobot.stateChange(RepositoryState.CONNECTION_CANCEL)
+        robot
+                .launchDashboardScreen()
+                .stateChange(RepositoryState.CONNECTION_FAILED)
+                .fitConnectedView(true)
+                .stateChange(RepositoryState.CONNECTION_CANCEL)
                 .fitConnectedView(true);
     }
 
     @Test
     public void rawDataViewTest()
     {
-        DashboardRobot rawDataButtonRobot = new DashboardRobot(mActivityTestRule);
-        rawDataButtonRobot.stateChange(RepositoryState.CONNECTION_SUCCESS)
+        robot
+                .launchDashboardScreen()
+                .stateChange(RepositoryState.CONNECTION_SUCCESS)
                 .dashboardView(true)
                 .emptyDataView(false)
                 .fitConnectedView(false)

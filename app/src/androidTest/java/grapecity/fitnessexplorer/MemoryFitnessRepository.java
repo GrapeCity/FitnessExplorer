@@ -29,6 +29,8 @@ import java.util.List;
  */
 public class MemoryFitnessRepository implements IFitnessRepository
 {
+    private static boolean isThereData = true;
+
     private List<IRepositoryChangeListener> stateListeners = new ArrayList<>();
     private RepositoryState currentState = RepositoryState.CONNECTING;
     private Task<Calorie> caloriesBurnedTodayListener = null;
@@ -36,7 +38,7 @@ public class MemoryFitnessRepository implements IFitnessRepository
     private Task<List<CalorieActivity>> todayActivitiesListener = null;
     private Task<List<DayActivities>> monthDayActivitiesListener = null;
     private Task<List<ActivityDataPoint>> loadActivityDataPointsListener = null;
-    private boolean isThereData = true;
+
     private boolean connected = false;
     private Calendar startDate;
     private Calendar endDate;
@@ -84,7 +86,7 @@ public class MemoryFitnessRepository implements IFitnessRepository
             for(int i=0; i<weekList.size(); i++)
             {
                 DayActivities curr = weekList.get(i);
-                ArrayList<CalorieActivity> activities = curr.getActivities();
+                List<CalorieActivity> activities = curr.getActivities();
                 CalorieDate newDate = new CalorieDate(0, curr.getYear(), curr.getMonth(), curr.getDay());
                 for(int j=0; j<activities.size(); j++)
                 {
@@ -178,10 +180,16 @@ public class MemoryFitnessRepository implements IFitnessRepository
         }
     }
 
-    public void setIsThereData(boolean isThereData)
+    public static void setIsThereData(boolean data)
     {
-        this.isThereData = isThereData;
+        isThereData = data;
     }
+
+    public static void reset()
+    {
+        setIsThereData(true);
+    }
+
 
     @Override
     public List<ActivityDataPoint> loadActivityDataPoints(Calendar startDate, Calendar endDate)

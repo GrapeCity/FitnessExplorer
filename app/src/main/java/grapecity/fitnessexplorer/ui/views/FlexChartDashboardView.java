@@ -14,6 +14,8 @@ import com.grapecity.xuni.flexchart.FlexChart;
 import java.util.ArrayList;
 import java.util.List;
 
+import grapecity.fitnessexplorer.R;
+
 /**
  * Created by David.Bickford on 5/26/2016.
  */
@@ -21,7 +23,7 @@ public class FlexChartDashboardView extends DashboardView
 {
     private FlexChart mChart;
 
-    public FlexChartDashboardView(Context context, ArrayList<CalorieDate> days)
+    public FlexChartDashboardView(Context context)
     {
         super(context);
         init(context);
@@ -39,7 +41,7 @@ public class FlexChartDashboardView extends DashboardView
 
     public void init(Context context)
     {
-        super.title.setText("Calories burned this week");
+        super.title.setText(getResources().getString(R.string.calories_week));
         mChart = new FlexChart(context);
         mChart.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 
@@ -64,6 +66,8 @@ public class FlexChartDashboardView extends DashboardView
         mChart.getMarker().setLines(ChartMarkerLines.NONE);
         mChart.setToggleLegend(false);
         mChart.setAnimated(false);
+
+        mChart.getTooltip().setVisible(false);
 
         super.contentLayout.addView(mChart);
     }

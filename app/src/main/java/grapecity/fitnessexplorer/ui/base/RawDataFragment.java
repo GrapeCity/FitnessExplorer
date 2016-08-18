@@ -40,7 +40,7 @@ public class RawDataFragment extends Fragment implements IRawDataView
         mGrid = (FlexGrid)view.findViewById(R.id.flexgrid);
 
         fitnessRepository = ((MyApp)getActivity().getApplication()).getRepository(getActivity());
-        collectionView = new FitnessCollectionView(fitnessRepository, mGrid);
+        collectionView = new FitnessCollectionView(fitnessRepository);
         mGrid.setAutoGenerateColumns(false);
         mGrid.setCollectionView(collectionView);
         model = new RawDataModelImpl(fitnessRepository, (IRawDataController)getActivity());

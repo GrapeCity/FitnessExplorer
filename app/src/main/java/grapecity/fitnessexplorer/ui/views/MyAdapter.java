@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.fitnessexplorer.entities.CalorieActivity;
 import com.fitnessexplorer.entities.DayActivities;
 import java.util.ArrayList;
+import java.util.List;
+
 import grapecity.fitnessexplorer.R;
 import grapecity.fitnessexplorer.factories.RandomColorFactory;
 import grapecity.fitnessexplorer.util.DimensionUtil;
@@ -19,9 +21,8 @@ import grapecity.fitnessexplorer.util.DimensionUtil;
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
 {
-    private ArrayList<DayActivities> mDataset;
-    private ArrayList<CalorieActivity> activities;
-    private RandomColorFactory colorFactory;
+    private List<DayActivities> mDataset;
+    private List<CalorieActivity> activities;
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
@@ -60,7 +61,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
     {
         if(activities != null)
         {
-            holder.colorView.setBackgroundColor(colorFactory.getNewColor(activities.get(position).getActivity()).getColor());
+            holder.colorView.setBackgroundColor(RandomColorFactory.getNewColor(activities.get(position).getActivity()).getColor());
             holder.title.setText(activities.get(position).getActivity() + " (" + activities.get(position).getCalorie() + ")");
         }
         else
@@ -84,10 +85,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
         }
     }
 
-    public void setDayActivities(ArrayList<CalorieActivity> activityList, RandomColorFactory colorList)
+    public void setDayActivities(List<CalorieActivity> activityList)
     {
         activities = activityList;
-        colorFactory = colorList;
         super.notifyDataSetChanged();
     }
 }

@@ -2,6 +2,7 @@ package com.fitnessexplorer;
 
 import com.fitnessexplorer.entities.ActivityDataPoint;
 import com.fitnessexplorer.services.repo.IFitnessRepository;
+import com.fitnessexplorer.services.repo.RepositoryState;
 import com.fitnessexplorer.ui.rawdata.IRawDataController;
 import com.fitnessexplorer.ui.rawdata.IRawDataView;
 import com.fitnessexplorer.ui.rawdata.RawDataModelImpl;
@@ -28,7 +29,7 @@ public class TestRawDataModelImpl
     public void init()
     {
         view = new MockRawDataView();
-//        repo = new MemoryFitnessRepository();
+        repo = new MockFitnessRepository();
         controller = new MockRawDataController();
         model = new RawDataModelImpl(repo, controller);
     }
@@ -37,7 +38,9 @@ public class TestRawDataModelImpl
     public void testViewReady()
     {
         model.viewReady(view);
+        model.onRepositoryStateChanged(RepositoryState.CONNECTING, RepositoryState.CONNECTION_SUCCESS);
         assertEquals(true, view.activityDataPointsForTheWeekLoadedCalled);
+
     }
 
     private class MockRawDataController implements IRawDataController
@@ -52,7 +55,7 @@ public class TestRawDataModelImpl
         @Override
         public void activityDataPointsForTheWeekLoaded(ArrayList<ActivityDataPoint> loadActivityDataPoints)
         {
-            activityDataPointsForTheWeekLoadedCalled = true;
+
         }
 
         @Override
@@ -64,7 +67,7 @@ public class TestRawDataModelImpl
         @Override
         public void showData()
         {
-
+            activityDataPointsForTheWeekLoadedCalled = true;
         }
     }
 }

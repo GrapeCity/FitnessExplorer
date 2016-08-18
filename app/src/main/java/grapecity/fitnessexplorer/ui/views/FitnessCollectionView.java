@@ -18,7 +18,7 @@ public class FitnessCollectionView extends com.grapecity.xuni.core.CursorCollect
     private Calendar startDate;
     private Calendar endDate;
 
-    public FitnessCollectionView(IFitnessRepository fitnessRepository, FlexGrid mGrid)
+    public FitnessCollectionView(IFitnessRepository fitnessRepository)
     {
         super(new ObservableList<ActivityDataPoint>());
         this.fitnessRepository = fitnessRepository;

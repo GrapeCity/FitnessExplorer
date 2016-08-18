@@ -1,5 +1,6 @@
 package grapecity.fitnessexplorer;
 
+import android.content.Intent;
 import android.support.test.rule.ActivityTestRule;
 import com.fitnessexplorer.services.repo.RepositoryState;
 import grapecity.fitnessexplorer.ui.base.DashboardActivity;
@@ -24,7 +25,39 @@ public class DashboardRobot
     public DashboardRobot(ActivityTestRule<DashboardActivity> mActivityTestRule)
     {
         this.mActivityTestRule = mActivityTestRule;
+
+        MemoryFitnessRepository.reset();
+    }
+
+    public DashboardRobot launchDashboardScreen()
+    {
+        Intent intent = new Intent();
+
+        this.mActivityTestRule.launchActivity(intent);
+
         memoryFitnessRepository = (MemoryFitnessRepository)((TestMyApp)mActivityTestRule.getActivity().getApplication()).getRepository(null);
+
+        return this;
+    }
+
+    public void endTest()
+    {
+        ((TestMyApp)mActivityTestRule.getActivity().getApplication()).endTest();
+    }
+
+
+    public DashboardRobot disableData()
+    {
+        MemoryFitnessRepository.setIsThereData(false);
+
+        return this;
+    }
+
+    public DashboardRobot enableData()
+    {
+        MemoryFitnessRepository.setIsThereData(true);
+
+        return this;
     }
 
     public DashboardRobot loadingView(boolean activated)
@@ -42,7 +75,6 @@ public class DashboardRobot
 
     public DashboardRobot emptyDataView(boolean activated)
     {
-        memoryFitnessRepository.setIsThereData(!activated);
         if(activated)
         {
             onView(withId(R.id.EmptyDataView)).check(matches(isDisplayed()));
@@ -56,7 +88,6 @@ public class DashboardRobot
 
     public DashboardRobot dashboardView(boolean activated)
     {
-        memoryFitnessRepository.setIsThereData(activated);
         if(activated)
         {
             onView(withId(R.id.DataView)).check(matches(isDisplayed()));

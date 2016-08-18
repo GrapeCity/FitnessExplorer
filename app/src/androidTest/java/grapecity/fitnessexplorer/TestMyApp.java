@@ -13,13 +13,24 @@ import com.fitnessexplorer.services.repo.IFitnessRepository;
 
 public class TestMyApp extends MyApp
 {
-    MemoryFitnessRepository repo = new MemoryFitnessRepository();
+    MemoryFitnessRepository repo;
 
     @Override
     public IFitnessRepository getRepository(Activity activity)
     {
+        if(repo == null)
+        {
+            repo = new MemoryFitnessRepository();
+        }
+
         return repo;
     }
+
+    public void endTest()
+    {
+        repo = new MemoryFitnessRepository();
+    }
+
 
     @Override
     public View addProgressViewToLayout(ViewGroup parent, LayoutInflater inflater)

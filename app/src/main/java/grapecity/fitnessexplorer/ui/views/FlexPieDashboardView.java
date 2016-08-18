@@ -11,6 +11,8 @@ import com.grapecity.xuni.flexpie.FlexPie;
 import com.grapecity.xuni.flexpie.PieLabelPosition;
 import java.util.List;
 
+import grapecity.fitnessexplorer.R;
+
 /**
  * Created by David.Bickford on 5/26/2016.
  */
@@ -36,7 +38,7 @@ public class FlexPieDashboardView extends DashboardView
 
     private void init(Context context)
     {
-        super.title.setText("Today's activities");
+        super.title.setText(getResources().getString(R.string.activities_today));
         mFlexPie = new FlexPie(context);
 
         MarginF mPlotMargin = new MarginF(10f, 10f, 10f, 10f);
@@ -48,6 +50,8 @@ public class FlexPieDashboardView extends DashboardView
         mFlexPie.getDataLabel().setPosition(PieLabelPosition.OUTSIDE);
         mFlexPie.setBackgroundColor(Color.WHITE);
         mFlexPie.setBorderColor(Color.WHITE);
+
+        mFlexPie.getTooltip().setVisible(false);
 
         super.contentLayout.addView(mFlexPie);
     }

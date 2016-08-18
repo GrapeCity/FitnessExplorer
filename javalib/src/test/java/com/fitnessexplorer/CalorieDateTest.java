@@ -44,6 +44,8 @@ public class CalorieDateTest
         Calendar today = Calendar.getInstance();
         Date date = new Date();
         today.setTime(date);
+        today.set(Calendar.MONTH, Calendar.AUGUST);
+        today.set(Calendar.DAY_OF_MONTH, 25);
         calorieDate.setCalendar(today);
         assertEquals(2015, calorieDate.getYear());
         assertEquals(6, calorieDate.getMonth());

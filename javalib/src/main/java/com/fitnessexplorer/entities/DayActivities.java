@@ -2,6 +2,7 @@ package com.fitnessexplorer.entities;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by David.Bickford on 5/23/2016.
@@ -13,7 +14,7 @@ public class DayActivities
     private int year;
     private int month;
     private int day;
-    private ArrayList<CalorieActivity> activities;
+    private List<CalorieActivity> activities;
 
     public DayActivities()
     {
@@ -99,7 +100,7 @@ public class DayActivities
         activities.add(act);
     }
 
-    public ArrayList getActivities()
+    public List<CalorieActivity> getActivities()
     {
         return activities;
     }

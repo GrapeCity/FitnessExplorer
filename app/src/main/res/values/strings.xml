@@ -5,4 +5,12 @@
     <string name="no_fit_title">No Google Fit data found</string>
     <string name="no_fit_data">No Google Fit data found. Please start using Google Fit.</string>
     <string name="loading">Loading...</string>
+
+    <string name="calories_today">Calories burned today</string>
+    <string name="activities_today">Today\'s activities</string>
+    <string name="calories_week">Calories burned this week</string>
+    <string name="activities_month">Activities in %1$s</string>
+
+    <string name="download">Download</string>
+    <string name="cancel">Cancel</string>
 </resources>

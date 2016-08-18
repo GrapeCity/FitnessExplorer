@@ -21,11 +21,8 @@ public class ActivityDataPointTest
         assertEquals(2016, activityDataPoint.getStartYear());
         assertEquals(5, activityDataPoint.getStartMonth());
         assertEquals(23, activityDataPoint.getStartDay());
-        assertEquals(2017, activityDataPoint.getStartYear());
-        assertEquals(6, activityDataPoint.getStartMonth());
-        assertEquals(24, activityDataPoint.getStartDay());
-        assertEquals("Swimming", activityDataPoint.getActivity());
-        assertEquals("Going to the gym to lift!", activityDataPoint.getActivity());
+        assertEquals("Lifting", activityDataPoint.getActivity());
+        assertEquals("Going to the gym to lift!", activityDataPoint.getActivityDescription());
     }
 
     @Test
