@@ -52,7 +52,7 @@ public class MockFitnessRepository implements IFitnessRepository
         {
             DayActivities curr = weekList.get(i);
             List<CalorieActivity> activities = curr.getActivities();
-            CalorieDate newDate = new CalorieDate(0, curr.getYear(), curr.getMonth(), curr.getDay());
+            CalorieDate newDate = new CalorieDate(0, "Mon");
             for(int j=0; j<activities.size(); j++)
             {
                 newDate.setCalorie(newDate.getCalorie() + activities.get(j).getCalorie());

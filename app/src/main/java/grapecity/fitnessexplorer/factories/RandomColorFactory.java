@@ -5,29 +5,39 @@ import java.util.Random;
 import grapecity.fitnessexplorer.entities.ActivityColor;
 import android.graphics.Color;
 
+import com.grapecity.xuni.chartcore.Palettes;
+import com.grapecity.xuni.core.util.ColorUtil;
+
 /**
  * Created by David.Bickford on 5/25/2016.
  */
 public class RandomColorFactory
 {
-    private static HashMap<String, ActivityColor> colorMap = new HashMap<>();
+    private HashMap<String, Integer> colorMap = new HashMap<>();
 
-    public static ActivityColor getNewColor(String activity)
+    public Integer getNewColor(String activity)
     {
-        Random rand = new Random();
-        int red, green, blue;
-
         if(colorMap.containsKey(activity))
         {
             return colorMap.get(activity);
         }
         else
         {
-            red = rand.nextInt(256);
-            green = rand.nextInt(256);
-            blue = rand.nextInt(256);
-            ActivityColor newColor = new ActivityColor(activity, Color.rgb(red, green, blue));
+            int colorIndex = colorMap.size() % Palettes.DARK.length;
+
+            int newColor = Palettes.DARK[colorIndex];
+
+            int alphaMultiplier = (int) Math.ceil(colorMap.size() + 1 / Palettes.DARK.length);
+
+            if(alphaMultiplier > 1)
+            {
+                alphaMultiplier--;
+
+                newColor = ColorUtil.applyAlpha(newColor, 255 - (alphaMultiplier * 50));
+            }
+
             colorMap.put(activity, newColor);
+
             return newColor;
         }
     }

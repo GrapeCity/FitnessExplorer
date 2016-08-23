@@ -61,39 +61,13 @@ public class MemoryFitnessRepository implements IFitnessRepository
     {
         if(connected)
         {
-            ArrayList<DayActivities> weekList = new ArrayList<>();
-
-            ArrayList<CalorieActivity> day1List = new ArrayList<>();
-            ArrayList<CalorieActivity> day2List = new ArrayList<>();
-            ArrayList<CalorieActivity> day3List = new ArrayList<>();
-            ArrayList<CalorieActivity> day4List = new ArrayList<>();
-            ArrayList<CalorieActivity> day5List = new ArrayList<>();
-
-            DayActivities day1 = new DayActivities(2016, 5, 23, day1List);
-            DayActivities day2 = new DayActivities(2016, 5, 24, day2List);
-            DayActivities day3 = new DayActivities(2016, 5, 25, day3List);
-            DayActivities day4 = new DayActivities(2016, 5, 26, day4List);
-            DayActivities day5 = new DayActivities(2016, 5, 27, day5List);
-
-            weekList.add(day1);
-            weekList.add(day2);
-            weekList.add(day3);
-            weekList.add(day4);
-            weekList.add(day5);
-
             ArrayList<CalorieDate> caloriesBurnedThisWeek = new ArrayList<>();
 
-            for(int i=0; i<weekList.size(); i++)
+            for(int i = 0; i < 7; i++)
             {
-                DayActivities curr = weekList.get(i);
-                List<CalorieActivity> activities = curr.getActivities();
-                CalorieDate newDate = new CalorieDate(0, curr.getYear(), curr.getMonth(), curr.getDay());
-                for(int j=0; j<activities.size(); j++)
-                {
-                    newDate.setCalorie(newDate.getCalorie() + activities.get(j).getCalorie());
-                }
-                caloriesBurnedThisWeek.add(newDate);
+                caloriesBurnedThisWeek.add(new CalorieDate(i * 100, "Monday"));
             }
+
             onFinishedListener.onFinished(caloriesBurnedThisWeek);
         }
         else

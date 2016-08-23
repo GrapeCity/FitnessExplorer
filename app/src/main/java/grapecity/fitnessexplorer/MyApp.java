@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.fitnessexplorer.services.repo.IFitnessRepository;
 import com.grapecity.xuni.core.LicenseManager;
+
+import grapecity.fitnessexplorer.factories.RandomColorFactory;
 import grapecity.fitnessexplorer.services.GoogleFitRepository;
 
 /**

@@ -24,6 +24,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
     private List<DayActivities> mDataset;
     private List<CalorieActivity> activities;
 
+    private final RandomColorFactory randomColorFactory;
+
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
         public View colorView;
@@ -40,9 +42,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
         }
     }
 
-    public MyAdapter(ArrayList<DayActivities> myDataset)
+    public MyAdapter(ArrayList<DayActivities> myDataset, RandomColorFactory randomColorFactory)
     {
         mDataset = myDataset;
+        this.randomColorFactory = randomColorFactory;
     }
 
     @Override
@@ -61,7 +64,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
     {
         if(activities != null)
         {
-            holder.colorView.setBackgroundColor(RandomColorFactory.getNewColor(activities.get(position).getActivity()).getColor());
+            holder.colorView.setBackgroundColor(randomColorFactory.getNewColor(activities.get(position).getActivity()));
             holder.title.setText(activities.get(position).getActivity() + " (" + activities.get(position).getCalorie() + ")");
         }
         else

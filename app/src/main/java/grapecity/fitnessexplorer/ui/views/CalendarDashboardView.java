@@ -42,6 +42,8 @@ public class CalendarDashboardView extends DashboardView
     private ArrayList<DayActivities> monthActivities = new ArrayList<>();
     private Context context;
 
+    private RandomColorFactory randomColorFactory;
+
     public CalendarDashboardView(Context context)
     {
         super(context);
@@ -60,6 +62,8 @@ public class CalendarDashboardView extends DashboardView
 
     private void init(final Context context)
     {
+        randomColorFactory = new RandomColorFactory();
+
         this.context = context;
 
         calendar = new XuniCalendar(context);
@@ -127,9 +131,9 @@ public class CalendarDashboardView extends DashboardView
                     {
                         for(int j=0; j<currDay.getActivities().size(); j++)
                         {
-                            CalorieActivity currActivity = (CalorieActivity)currDay.getActivities().get(j);
+                            CalorieActivity currActivity = currDay.getActivities().get(j);
                             View square = new View(context);
-                            square.setBackgroundColor(RandomColorFactory.getNewColor(currActivity.getActivity()).getColor());
+                            square.setBackgroundColor(randomColorFactory.getNewColor(currActivity.getActivity()));
                             square.setLayoutParams(new LayoutParams(DimensionUtil.getDimensionSize(boxDimension), DimensionUtil.getDimensionSize(boxDimension)));
                             square.invalidate();
                             View padding = new View(context);
@@ -166,7 +170,7 @@ public class CalendarDashboardView extends DashboardView
         LinearLayoutManager llm = new LinearLayoutManager(context);
         llm.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(llm);
-        mAdapter = new MyAdapter(monthActivities);
+        mAdapter = new MyAdapter(monthActivities, randomColorFactory);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DimensionUtil.getDimensionSize(50)));
         recyclerView.setBackgroundColor(Color.WHITE);

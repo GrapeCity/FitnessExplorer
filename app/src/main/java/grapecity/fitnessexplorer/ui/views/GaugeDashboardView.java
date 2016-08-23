@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import com.fitnessexplorer.entities.Calorie;
+import com.grapecity.xuni.chartcore.Palettes;
 import com.grapecity.xuni.gauge.GaugeRange;
 import com.grapecity.xuni.gauge.XuniRadialGauge;
 
@@ -51,6 +52,8 @@ public class GaugeDashboardView extends DashboardView
         gauge.setValueFontColor(Color.BLACK);
         gauge.setValueFontSize(30);
 
+        gauge.getPointer().setColor(Palettes.DARK[0]);
+
         super.contentLayout.addView(gauge);
     }
 
@@ -60,6 +63,7 @@ public class GaugeDashboardView extends DashboardView
         int offset;
         offset = calorie.getCalorie() % 1000;
         maxCalories += calorie.getCalorie() - offset;
+
         gauge.setValue(calorie.getCalorie());
 
         GaugeRange range = new GaugeRange();

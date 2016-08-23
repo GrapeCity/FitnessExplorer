@@ -25,6 +25,8 @@ import com.fitnessexplorer.entities.CalorieActivity;
 import com.fitnessexplorer.entities.CalorieDate;
 import com.fitnessexplorer.entities.DayActivities;
 import com.fitnessexplorer.services.repo.IFitnessRepository;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,6 +41,8 @@ import grapecity.fitnessexplorer.factories.ReadRequestFactory;
  */
 public class GoogleFitRepository implements IFitnessRepository, GoogleApiClient.ConnectionCallbacks
 {
+    private static final SimpleDateFormat DAY_OF_WEEK_FORMATTER = new SimpleDateFormat("EE");
+
     private GoogleApiClient mClient = null;
     private ArrayList<CalorieActivity> calorieActivitiesToday;
     private ArrayList<DayActivities> dayActivities;
@@ -153,12 +157,10 @@ public class GoogleFitRepository implements IFitnessRepository, GoogleApiClient.
                         {
                             for (DataPoint dp : dataSet.getDataPoints())
                             {
-                                CalorieDate currCal = new CalorieDate();
-                                Calendar startDate = Calendar.getInstance();
+                                Date date = new Date(dp.getStartTime(TimeUnit.MILLISECONDS));
 
-                                startDate.setTime(new Date(dp.getStartTime(TimeUnit.MILLISECONDS)));
-                                currCal.setCalendar(startDate);
-                                currCal.setCalorie(entityTranslator.translateFieldToCalorie(dp));
+                                CalorieDate currCal = new CalorieDate(entityTranslator.translateFieldToCalorie(dp), DAY_OF_WEEK_FORMATTER.format(date));
+
                                 calorieDates.add(currCal);
                             }
                         }
