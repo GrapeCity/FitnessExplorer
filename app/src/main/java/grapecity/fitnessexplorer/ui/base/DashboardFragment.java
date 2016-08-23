@@ -14,6 +14,7 @@ import com.fitnessexplorer.entities.CalorieActivity;
 import com.fitnessexplorer.entities.CalorieDate;
 import com.fitnessexplorer.entities.DayActivities;
 import com.fitnessexplorer.services.repo.IFitnessRepository;
+import com.fitnessexplorer.services.repo.preferences.IPreferencesRepository;
 import com.fitnessexplorer.ui.base.IController;
 import com.fitnessexplorer.ui.dashboard.DashboardModelImpl;
 import com.fitnessexplorer.ui.dashboard.IDashboardModel;
@@ -30,7 +31,7 @@ import grapecity.fitnessexplorer.ui.views.GaugeDashboardView;
 /**
  * Created by David.Bickford on 5/26/2016.
  */
-public class DashboardFragment extends Fragment implements IDashboardView
+public class DashboardFragment extends BaseFragment implements IDashboardView
 {
     private ScrollView fitnessExplorerView;
     private IDashboardModel model;
@@ -45,8 +46,9 @@ public class DashboardFragment extends Fragment implements IDashboardView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        IPreferencesRepository preferencesRepository = ((MyApp)getActivity().getApplication()).getPreferencesRepository();
         IFitnessRepository repo = ((MyApp)getActivity().getApplication()).getRepository(getActivity());
-        this.model = (DashboardModelImpl) ModelFactory.getNewControllerModel(repo, (IController)getActivity());
+        this.model = (DashboardModelImpl) ModelFactory.getNewControllerModel(repo, preferencesRepository, (IController)getActivity());
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_dashboard, container, false);
         ImageButton rawDataViewButton = (ImageButton)view.findViewById(R.id.rawdatabutton);
         gaugeView = (GaugeDashboardView)view.findViewById(R.id.gauge);

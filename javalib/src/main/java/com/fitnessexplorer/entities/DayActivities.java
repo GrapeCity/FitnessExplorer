@@ -23,7 +23,7 @@ public class DayActivities
         activities = new ArrayList<CalorieActivity>();
     }
 
-    public DayActivities(int y, int m, int d, ArrayList act)
+    public DayActivities(int y, int m, int d, List<CalorieActivity> act)
     {
         startDate = Calendar.getInstance();
         year = y;

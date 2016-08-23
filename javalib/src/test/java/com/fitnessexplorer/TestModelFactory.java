@@ -46,7 +46,7 @@ public class TestModelFactory
             }
 
             @Override
-            public void onSubscribe(IRepositoryChangeListener listener)
+            public void unsubscribe(IRepositoryChangeListener listener)
             {
 
             }

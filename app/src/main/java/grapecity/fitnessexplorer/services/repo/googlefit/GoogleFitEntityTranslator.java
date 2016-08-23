@@ -1,10 +1,12 @@
-package grapecity.fitnessexplorer.services;
+package grapecity.fitnessexplorer.services.repo.googlefit;
 
 import com.google.android.gms.fitness.data.Bucket;
 import com.google.android.gms.fitness.data.DataPoint;
 import com.google.android.gms.fitness.data.DataSet;
 import com.google.android.gms.fitness.data.Field;
 import com.google.android.gms.fitness.result.DataReadResult;
+
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**

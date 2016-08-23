@@ -1,6 +1,7 @@
 package com.fitnessexplorer.ui.rawdata;
 
 import com.fitnessexplorer.services.repo.RepositoryState;
+import com.fitnessexplorer.services.repo.preferences.IPreferencesRepository;
 import com.fitnessexplorer.ui.base.BaseModel;
 import com.fitnessexplorer.services.repo.IFitnessRepository;
 
@@ -10,9 +11,9 @@ import com.fitnessexplorer.services.repo.IFitnessRepository;
 public class RawDataModelImpl extends BaseModel<IRawDataView, IRawDataController> implements IRawDataModel
 {
 
-    public RawDataModelImpl(IFitnessRepository repo,IRawDataController controller)
+    public RawDataModelImpl(IFitnessRepository repo, IPreferencesRepository preferencesRepo, IRawDataController controller)
     {
-        super(repo, controller);
+        super(repo, preferencesRepo, controller);
     }
 
     @Override

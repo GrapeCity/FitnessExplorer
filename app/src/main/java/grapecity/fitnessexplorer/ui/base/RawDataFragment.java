@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import com.fitnessexplorer.entities.ActivityDataPoint;
 import com.fitnessexplorer.services.repo.IFitnessRepository;
+import com.fitnessexplorer.services.repo.preferences.IPreferencesRepository;
 import com.fitnessexplorer.ui.rawdata.IRawDataController;
 import com.fitnessexplorer.ui.rawdata.IRawDataView;
 import com.fitnessexplorer.ui.rawdata.RawDataModelImpl;
@@ -24,7 +25,7 @@ import grapecity.fitnessexplorer.ui.views.FitnessCollectionView;
 /**
  * Created by David.Bickford on 6/6/2016.
  */
-public class RawDataFragment extends Fragment implements IRawDataView
+public class RawDataFragment extends BaseFragment implements IRawDataView
 {
     private FitnessCollectionView collectionView;
     private IFitnessRepository fitnessRepository;
@@ -38,12 +39,12 @@ public class RawDataFragment extends Fragment implements IRawDataView
     {
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_rawdata, container, false);
         mGrid = (FlexGrid)view.findViewById(R.id.flexgrid);
-
+        IPreferencesRepository preferencesRepository = ((MyApp)getActivity().getApplication()).getPreferencesRepository();
         fitnessRepository = ((MyApp)getActivity().getApplication()).getRepository(getActivity());
         collectionView = new FitnessCollectionView(fitnessRepository);
         mGrid.setAutoGenerateColumns(false);
         mGrid.setCollectionView(collectionView);
-        model = new RawDataModelImpl(fitnessRepository, (IRawDataController)getActivity());
+        model = new RawDataModelImpl(fitnessRepository, preferencesRepository, (IRawDataController)getActivity());
         rawDataLayout = (LinearLayout)view.findViewById(R.id.LinearLayout_RawData);
         progressBar = ((MyApp)getActivity().getApplication()).addProgressViewToLayout(view, inflater);
         showConnecting();

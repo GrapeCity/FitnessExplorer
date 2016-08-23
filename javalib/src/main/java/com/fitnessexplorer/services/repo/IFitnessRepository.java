@@ -27,5 +27,5 @@ public interface IFitnessRepository
 
     void subscribe(IRepositoryChangeListener listener);
 
-    void onSubscribe(IRepositoryChangeListener listener);
+    void unsubscribe(IRepositoryChangeListener listener);
 }

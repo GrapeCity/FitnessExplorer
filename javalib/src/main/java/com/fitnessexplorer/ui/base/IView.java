@@ -5,5 +5,5 @@ package com.fitnessexplorer.ui.base;
  */
 public interface IView
 {
-
+    void reload();
 }

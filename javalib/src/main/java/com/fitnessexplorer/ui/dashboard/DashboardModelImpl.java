@@ -7,6 +7,7 @@ import com.fitnessexplorer.entities.CalorieDate;
 import com.fitnessexplorer.entities.DayActivities;
 import com.fitnessexplorer.services.repo.RepositoryState;
 import com.fitnessexplorer.services.repo.Task;
+import com.fitnessexplorer.services.repo.preferences.IPreferencesRepository;
 import com.fitnessexplorer.ui.base.BaseModel;
 import com.fitnessexplorer.services.repo.IFitnessRepository;
 import java.io.Serializable;
@@ -64,19 +65,19 @@ public class DashboardModelImpl extends BaseModel<IDashboardView, IDashboardCont
         }
     };
 
-    public DashboardModelImpl(IFitnessRepository repo, IDashboardController controller)
+    public DashboardModelImpl(IFitnessRepository repo, IPreferencesRepository preferencesRepo, IDashboardController controller)
     {
-        super(repo, controller);
+        super(repo, preferencesRepo, controller);
     }
 
     @Override
     public void viewReady(IDashboardView view)
     {
         super.viewReady(view);
-        this.repo.getCaloriesBurnedToday(onCaloriesBurnedTodayLoaded);
-        this.repo.getCaloriesBurnedThisWeek(onCaloriesBurnedThisWeekLoaded);
-        this.repo.getCalorieActivitiesToday(onActivitiesDoneTodayLoaded);
-        this.repo.getMonthDayActivities(onMonthDayActivitiesLoaded);
+        this.fitnessRepository.getCaloriesBurnedToday(onCaloriesBurnedTodayLoaded);
+        this.fitnessRepository.getCaloriesBurnedThisWeek(onCaloriesBurnedThisWeekLoaded);
+        this.fitnessRepository.getCalorieActivitiesToday(onActivitiesDoneTodayLoaded);
+        this.fitnessRepository.getMonthDayActivities(onMonthDayActivitiesLoaded);
     }
 
     @Override

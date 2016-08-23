@@ -1,4 +1,4 @@
-package grapecity.fitnessexplorer.services;
+package grapecity.fitnessexplorer.services.repo.googlefit;
 
 import android.app.Activity;
 import android.support.v4.app.FragmentActivity;
@@ -443,7 +443,7 @@ public class GoogleFitRepository implements IFitnessRepository, GoogleApiClient.
     }
 
     @Override
-    public void onSubscribe(IRepositoryChangeListener listener)
+    public void unsubscribe(IRepositoryChangeListener listener)
     {
         stateListeners.remove(listener);
     }

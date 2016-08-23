@@ -1,4 +1,4 @@
-package grapecity.fitnessexplorer.services;
+package grapecity.fitnessexplorer.services.repo.googlefit;
 
 import com.google.android.gms.fitness.data.DataPoint;
 import com.google.android.gms.fitness.result.DataReadResult;

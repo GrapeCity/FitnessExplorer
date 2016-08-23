@@ -11,7 +11,7 @@
         <activity
             android:name=".ui.base.DashboardActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".ui.base.RawDataActivity"
                   android:label="@string/app_name"
-                  android:theme="@style/AppTheme"
+                  android:theme="@style/AppTheme.NoActionBar"
                   android:screenOrientation="portrait">
         </activity>
     </application>

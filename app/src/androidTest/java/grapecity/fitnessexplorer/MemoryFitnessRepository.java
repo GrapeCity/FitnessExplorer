@@ -178,7 +178,7 @@ public class MemoryFitnessRepository implements IFitnessRepository
     }
 
     @Override
-    public void onSubscribe(IRepositoryChangeListener listener)
+    public void unsubscribe(IRepositoryChangeListener listener)
     {
         stateListeners.remove(listener);
     }

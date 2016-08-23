@@ -2,6 +2,8 @@ package com.fitnessexplorer.ui.base;
 
 import com.fitnessexplorer.services.repo.IFitnessRepository;
 import com.fitnessexplorer.services.repo.IRepositoryChangeListener;
+import com.fitnessexplorer.services.repo.Task;
+import com.fitnessexplorer.services.repo.preferences.IPreferencesRepository;
 
 /**
  * Created by David.Bickford on 5/25/2016.
@@ -11,14 +13,27 @@ public abstract class BaseModel<V extends IView, C extends IController> implemen
 {
     protected V view;
     protected C controller;
-    protected IFitnessRepository repo;
+    protected IFitnessRepository fitnessRepository;
+    protected IPreferencesRepository preferencesRepo;
 
-    public BaseModel(IFitnessRepository repo, C controller)
+    private boolean isGoogleFitEnabled = false;
+
+    public BaseModel(IFitnessRepository fitnessRepository, IPreferencesRepository preferencesRepo, C controller)
     {
-        this.repo = repo;
+        this.fitnessRepository = fitnessRepository;
+        this.preferencesRepo = preferencesRepo;
         this.controller = controller;
 
-        this.repo.subscribe(this);
+        this.fitnessRepository.subscribe(this);
+
+        this.preferencesRepo.isGoogleFitEnabled(new Task<Boolean>()
+        {
+            @Override
+            public void onFinished(Boolean data)
+            {
+                isGoogleFitEnabled = data;
+            }
+        });
     }
 
     @Override
@@ -27,5 +42,22 @@ public abstract class BaseModel<V extends IView, C extends IController> implemen
         this.view = view;
     }
 
+    @Override
+    public void toggleDataSourceClicked()
+    {
+        this.preferencesRepo.setGoogleFitEnabled(!isGoogleFitEnabled, new Task<Boolean>()
+        {
+            @Override
+            public void onFinished(Boolean data)
+            {
+                view.reload();
+            }
+        });
+    }
 
+    @Override
+    public boolean isGoogleFitEnabled()
+    {
+        return isGoogleFitEnabled;
+    }
 }

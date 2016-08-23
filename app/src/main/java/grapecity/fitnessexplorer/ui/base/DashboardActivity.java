@@ -11,14 +11,14 @@ import grapecity.fitnessexplorer.R;
 /**
  * Created by David.Bickford on 5/26/2016.
  */
-public class DashboardActivity extends AppCompatActivity implements IDashboardController
+public class DashboardActivity extends BaseActivity implements IDashboardController
 {
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity);
+
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();

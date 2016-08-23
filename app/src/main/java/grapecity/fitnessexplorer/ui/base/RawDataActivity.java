@@ -10,14 +10,14 @@ import grapecity.fitnessexplorer.R;
 /**
  * Created by David.Bickford on 6/6/2016.
  */
-public class RawDataActivity extends AppCompatActivity implements IRawDataController
+public class RawDataActivity extends BaseActivity implements IRawDataController
 {
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity);
+
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();

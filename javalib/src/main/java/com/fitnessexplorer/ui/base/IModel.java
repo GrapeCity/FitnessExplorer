@@ -6,4 +6,8 @@ package com.fitnessexplorer.ui.base;
 public interface IModel<V extends IView>
 {
     void viewReady(V view);
+
+    void toggleDataSourceClicked();
+
+    boolean isGoogleFitEnabled();
 }
