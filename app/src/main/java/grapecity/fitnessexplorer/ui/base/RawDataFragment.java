@@ -50,7 +50,7 @@ public class RawDataFragment extends BaseFragment<IRawDataModel> implements IRaw
 
         super.model = new RawDataModelImpl(fitnessRepository, preferencesRepository, taskScheduler, (IRawDataController)getActivity());
         model.viewReady(this);
-        
+
         FitnessCollectionView collectionView = new FitnessCollectionView(fitnessRepository);
         mGrid.setAutoGenerateColumns(false);
         mGrid.setCollectionView(collectionView);
