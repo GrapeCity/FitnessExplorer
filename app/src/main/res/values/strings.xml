@@ -13,4 +13,7 @@
 
     <string name="download">Download</string>
     <string name="cancel">Cancel</string>
+
+    <string name="tutorial_title">Link GoogleFit</string>
+    <string name="tutorial_description">By default Fitness Explorer displays fake fitness data in order to showcase GrapeCity controls.  In order to link Fitness Explorer with your GoogleFit data simply click the GoogleFit icon in the top right hand corner.</string>
 </resources>

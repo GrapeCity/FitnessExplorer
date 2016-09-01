@@ -10,4 +10,6 @@ public interface IModel<V extends IView>
     void toggleDataSourceClicked();
 
     boolean isGoogleFitEnabled();
+
+    void tutorialOkClicked();
 }

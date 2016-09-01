@@ -8,6 +8,7 @@ import com.fitnessexplorer.entities.DayActivities;
 import com.fitnessexplorer.services.repo.RepositoryState;
 import com.fitnessexplorer.services.repo.Task;
 import com.fitnessexplorer.services.repo.preferences.IPreferencesRepository;
+import com.fitnessexplorer.services.task.ITaskScheduler;
 import com.fitnessexplorer.ui.base.BaseModel;
 import com.fitnessexplorer.services.repo.IFitnessRepository;
 import java.io.Serializable;
@@ -65,9 +66,9 @@ public class DashboardModelImpl extends BaseModel<IDashboardView, IDashboardCont
         }
     };
 
-    public DashboardModelImpl(IFitnessRepository repo, IPreferencesRepository preferencesRepo, IDashboardController controller)
+    public DashboardModelImpl(IFitnessRepository repo, IPreferencesRepository preferencesRepo, ITaskScheduler taskScheduler, IDashboardController controller)
     {
-        super(repo, preferencesRepo, controller);
+        super(repo, preferencesRepo, taskScheduler, controller);
     }
 
     @Override

@@ -10,11 +10,13 @@ import com.fitnessexplorer.services.repo.IFitnessRepository;
 import com.fitnessexplorer.services.repo.Task;
 import com.fitnessexplorer.services.repo.preferences.IPreferencesRepository;
 import com.fitnessexplorer.services.repo.simulated.SimulatedFitnessRepository;
+import com.fitnessexplorer.services.task.ITaskScheduler;
 import com.grapecity.xuni.core.LicenseManager;
 
 import grapecity.fitnessexplorer.services.repo.googlefit.GoogleFitRepository;
 import grapecity.fitnessexplorer.services.repo.preferences.IPreferencesChangedListener;
 import grapecity.fitnessexplorer.services.repo.preferences.SharedPreferencesRepository;
+import grapecity.fitnessexplorer.services.task.AndroidTaskScheduler;
 
 /**
  * Created by David.Bickford on 5/31/2016.
@@ -22,8 +24,6 @@ import grapecity.fitnessexplorer.services.repo.preferences.SharedPreferencesRepo
 public class MyApp extends Application implements IPreferencesChangedListener
 {
     IPreferencesRepository preferencesRepository;
-
-    IFitnessRepository fitnessRepository;
 
     private boolean googleFitEnabled = false;
 
@@ -53,6 +53,11 @@ public class MyApp extends Application implements IPreferencesChangedListener
     public IPreferencesRepository getPreferencesRepository()
     {
         return preferencesRepository;
+    }
+
+    public ITaskScheduler getTaskScheduler()
+    {
+        return new AndroidTaskScheduler();
     }
 
     public View addProgressViewToLayout(ViewGroup parent, LayoutInflater inflater)

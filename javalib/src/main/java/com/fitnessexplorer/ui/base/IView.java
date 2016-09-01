@@ -5,5 +5,9 @@ package com.fitnessexplorer.ui.base;
  */
 public interface IView
 {
+    void loadToolbar();
+
     void reload();
+
+    void showTutorial();
 }

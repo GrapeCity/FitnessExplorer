@@ -15,6 +15,7 @@ import com.fitnessexplorer.entities.CalorieDate;
 import com.fitnessexplorer.entities.DayActivities;
 import com.fitnessexplorer.services.repo.IFitnessRepository;
 import com.fitnessexplorer.services.repo.preferences.IPreferencesRepository;
+import com.fitnessexplorer.services.task.ITaskScheduler;
 import com.fitnessexplorer.ui.base.IController;
 import com.fitnessexplorer.ui.dashboard.DashboardModelImpl;
 import com.fitnessexplorer.ui.dashboard.IDashboardModel;
@@ -31,10 +32,9 @@ import grapecity.fitnessexplorer.ui.views.GaugeDashboardView;
 /**
  * Created by David.Bickford on 5/26/2016.
  */
-public class DashboardFragment extends BaseFragment implements IDashboardView
+public class DashboardFragment extends BaseFragment<IDashboardModel> implements IDashboardView
 {
     private ScrollView fitnessExplorerView;
-    private IDashboardModel model;
     private GaugeDashboardView gaugeView;
     private FlexPieDashboardView pieView;
     private FlexChartDashboardView chartView;
@@ -46,9 +46,12 @@ public class DashboardFragment extends BaseFragment implements IDashboardView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        IPreferencesRepository preferencesRepository = ((MyApp)getActivity().getApplication()).getPreferencesRepository();
-        IFitnessRepository repo = ((MyApp)getActivity().getApplication()).getRepository(getActivity());
-        this.model = (DashboardModelImpl) ModelFactory.getNewControllerModel(repo, preferencesRepository, (IController)getActivity());
+        MyApp myApp = ((MyApp)getActivity().getApplication());
+
+        IPreferencesRepository preferencesRepository = myApp.getPreferencesRepository();
+        IFitnessRepository repo = myApp.getRepository(getActivity());
+        ITaskScheduler taskScheduler = myApp.getTaskScheduler();
+        super.model = (DashboardModelImpl) ModelFactory.getNewControllerModel(repo, preferencesRepository, taskScheduler, (IController)getActivity());
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_dashboard, container, false);
         ImageButton rawDataViewButton = (ImageButton)view.findViewById(R.id.rawdatabutton);
         gaugeView = (GaugeDashboardView)view.findViewById(R.id.gauge);

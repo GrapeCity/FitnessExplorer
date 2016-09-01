@@ -10,7 +10,9 @@ import android.widget.LinearLayout;
 import com.fitnessexplorer.entities.ActivityDataPoint;
 import com.fitnessexplorer.services.repo.IFitnessRepository;
 import com.fitnessexplorer.services.repo.preferences.IPreferencesRepository;
+import com.fitnessexplorer.services.task.ITaskScheduler;
 import com.fitnessexplorer.ui.rawdata.IRawDataController;
+import com.fitnessexplorer.ui.rawdata.IRawDataModel;
 import com.fitnessexplorer.ui.rawdata.IRawDataView;
 import com.fitnessexplorer.ui.rawdata.RawDataModelImpl;
 import com.grapecity.xuni.core.Aggregate;
@@ -25,12 +27,8 @@ import grapecity.fitnessexplorer.ui.views.FitnessCollectionView;
 /**
  * Created by David.Bickford on 6/6/2016.
  */
-public class RawDataFragment extends BaseFragment implements IRawDataView
+public class RawDataFragment extends BaseFragment<IRawDataModel> implements IRawDataView
 {
-    private FitnessCollectionView collectionView;
-    private IFitnessRepository fitnessRepository;
-    private FlexGrid mGrid;
-    private RawDataModelImpl model;
     private View progressBar;
     private LinearLayout rawDataLayout;
 
@@ -38,16 +36,24 @@ public class RawDataFragment extends BaseFragment implements IRawDataView
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_rawdata, container, false);
-        mGrid = (FlexGrid)view.findViewById(R.id.flexgrid);
-        IPreferencesRepository preferencesRepository = ((MyApp)getActivity().getApplication()).getPreferencesRepository();
-        fitnessRepository = ((MyApp)getActivity().getApplication()).getRepository(getActivity());
-        collectionView = new FitnessCollectionView(fitnessRepository);
-        mGrid.setAutoGenerateColumns(false);
-        mGrid.setCollectionView(collectionView);
-        model = new RawDataModelImpl(fitnessRepository, preferencesRepository, (IRawDataController)getActivity());
+
         rawDataLayout = (LinearLayout)view.findViewById(R.id.LinearLayout_RawData);
         progressBar = ((MyApp)getActivity().getApplication()).addProgressViewToLayout(view, inflater);
         showConnecting();
+
+        MyApp myApp = ((MyApp)getActivity().getApplication());
+
+        FlexGrid mGrid = (FlexGrid)view.findViewById(R.id.flexgrid);
+        IPreferencesRepository preferencesRepository = myApp.getPreferencesRepository();
+        ITaskScheduler taskScheduler = myApp.getTaskScheduler();
+        IFitnessRepository fitnessRepository = myApp.getRepository(getActivity());
+
+        super.model = new RawDataModelImpl(fitnessRepository, preferencesRepository, taskScheduler, (IRawDataController)getActivity());
+        model.viewReady(this);
+        
+        FitnessCollectionView collectionView = new FitnessCollectionView(fitnessRepository);
+        mGrid.setAutoGenerateColumns(false);
+        mGrid.setCollectionView(collectionView);
 
         GridColumn columnDate = new GridColumn(mGrid, "Date", "startDate");
         GridColumn columnActivity = new GridColumn(mGrid, "Activity", "activity");
@@ -72,7 +78,7 @@ public class RawDataFragment extends BaseFragment implements IRawDataView
         mGrid.setSelectionBackgroundColor(Color.parseColor("#3F51B5"));
         mGrid.setReadOnly(true);
 
-        model.viewReady(this);
+
         return view;
     }
 

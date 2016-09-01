@@ -97,12 +97,24 @@ public class SimulatedFitnessRepository implements IFitnessRepository
     public void loadActivityDataPointsAsync(Task<List<ActivityDataPoint>> onFinishedListener, Calendar startDate, Calendar endDate)
     {
         onFinishedListener.onFinished(loadActivityDataPoints(startDate, endDate));
+
+        connected();
     }
 
     @Override
     public List<ActivityDataPoint> loadActivityDataPoints(Calendar startDate, Calendar endDate)
     {
-        return null;
+        ArrayList<ActivityDataPoint> list = new ArrayList<>();
+
+        ActivityDataPoint one = new ActivityDataPoint("Swimming", 350, "I swam", 2016, 5, 24, 6, 30, 2016, 5, 24, 7, 30);
+        ActivityDataPoint two = new ActivityDataPoint("Lifting", 200, "I picked stuff up", 2016, 5, 25, 6, 30, 2016, 5, 25, 7, 30);
+        ActivityDataPoint three = new ActivityDataPoint("Running", 500, "I ran", 2016, 5, 26, 6, 45, 2016, 5, 26, 8, 15);
+
+        list.add(one);
+        list.add(two);
+        list.add(three);
+
+        return list;
     }
 
     @Override

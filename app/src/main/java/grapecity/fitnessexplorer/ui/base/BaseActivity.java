@@ -1,10 +1,16 @@
 package grapecity.fitnessexplorer.ui.base;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fitnessexplorer.services.repo.preferences.IPreferencesRepository;
+
+import grapecity.fitnessexplorer.MyApp;
 import grapecity.fitnessexplorer.R;
 
 public class BaseActivity extends AppCompatActivity
@@ -18,8 +24,8 @@ public class BaseActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        setSupportActionBar(toolbar);
+        View.inflate(this, R.layout.view_toolbar, toolbar);
 
-        toolbar.setTitle(R.string.app_name);
+        setSupportActionBar(toolbar);
     }
 }

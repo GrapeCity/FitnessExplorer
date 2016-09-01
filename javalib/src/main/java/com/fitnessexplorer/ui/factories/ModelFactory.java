@@ -2,6 +2,7 @@ package com.fitnessexplorer.ui.factories;
 
 import com.fitnessexplorer.services.repo.IFitnessRepository;
 import com.fitnessexplorer.services.repo.preferences.IPreferencesRepository;
+import com.fitnessexplorer.services.task.ITaskScheduler;
 import com.fitnessexplorer.ui.base.IController;
 import com.fitnessexplorer.ui.base.IModel;
 import com.fitnessexplorer.ui.dashboard.DashboardModelImpl;
@@ -14,15 +15,15 @@ import com.fitnessexplorer.ui.rawdata.RawDataModelImpl;
  */
 public class ModelFactory
 {
-    public static IModel getNewControllerModel(IFitnessRepository repo, IPreferencesRepository preferencesRepo, IController controller)
+    public static IModel getNewControllerModel(IFitnessRepository repo, IPreferencesRepository preferencesRepo, ITaskScheduler taskScheduler, IController controller)
     {
         if(controller instanceof IDashboardController)
         {
-            return new DashboardModelImpl(repo, preferencesRepo, (IDashboardController)controller);
+            return new DashboardModelImpl(repo, preferencesRepo, taskScheduler, (IDashboardController)controller);
         }
         else
         {
-            return new RawDataModelImpl(repo, preferencesRepo, (IRawDataController)controller);
+            return new RawDataModelImpl(repo, preferencesRepo, taskScheduler, (IRawDataController)controller);
         }
     }
 }

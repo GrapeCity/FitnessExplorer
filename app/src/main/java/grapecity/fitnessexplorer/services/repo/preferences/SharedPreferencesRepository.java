@@ -8,6 +8,7 @@ import com.fitnessexplorer.services.repo.preferences.IPreferencesRepository;
 public class SharedPreferencesRepository implements IPreferencesRepository
 {
     private static final String GFIT_ENABLED = "GFIT_ENABLED";
+    private static final String TUTORIAL_ENABLED = "TUTORIAL_ENABLED";
 
     private SharedPreferences sharedPreferences;
 
@@ -42,5 +43,17 @@ public class SharedPreferencesRepository implements IPreferencesRepository
         }
 
         onCompleted.onFinished(false);
+    }
+
+    @Override
+    public void hasSeenTutorial(Task<Boolean> onCompleted)
+    {
+        onCompleted.onFinished(sharedPreferences.getBoolean(TUTORIAL_ENABLED, false));
+    }
+
+    @Override
+    public void setHasSeenTutorial()
+    {
+        sharedPreferences.edit().putBoolean(TUTORIAL_ENABLED, true).commit();
     }
 }
